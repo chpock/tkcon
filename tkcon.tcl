@@ -57,7 +57,7 @@ exec wish "$0" ${1+"$@"}
 if {$tcl_version < 8.4} {
     return -code error "tkcon requires at least Tcl/Tk 8.4"
 } else {
-    package require Tk 8.4
+    package require Tk 8.4-
 }
 
 # We need to load some package to get what's available, and we
@@ -81,7 +81,7 @@ catch {unset pkg file name version}
 namespace eval ::tkcon {
     # when modifying this line, make sure that the auto-upgrade check
     # for version still works.
-    variable VERSION "2.7.10"
+    variable VERSION "2.7.12"
     # The OPT variable is an array containing most of the optional
     # info to configure.  COLOR has the color data.
     variable OPT
@@ -721,7 +721,7 @@ proc ::tkcon::InitUI {title} {
     }
 
     # If we can locate the XDG icon file then make use of it.
-    if {[package vsatisfies [package provide Tk] 8.6]} {
+    if {[package vsatisfies [package provide Tk] 8.6-]} {
         if {[tk windowingsystem] eq "x11"} {
             if {[set icon [locate_xdg_icon tkcon-icon.png]] ne ""} {
                 image create photo tkcon_icon -file $icon
